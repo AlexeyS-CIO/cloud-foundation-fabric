@@ -14,26 +14,7 @@
  * limitations under the License.
  */
 
-# tfdoc:file:description Project factory.
-
-module "projects" {
-  source = "../../../../blueprints/factories/project-factory"
-  data_defaults = {
-    billing_account = var.billing_account.id
-    # more defaults are available, check the project factory variables
-  }
-  data_merges = {
-    labels = {
-      environment = "dev"
-    }
-    services = [
-      "stackdriver.googleapis.com"
-    ]
-  }
-  data_overrides = {
-    prefix = "${var.prefix}-dev"
-  }
-  factory_data_path = var.factory_data_path
+output "cloud_config" {
+  description = "Rendered cloud-config file to be passed as user-data instance metadata."
+  value       = module.cos-envoy.cloud_config
 }
-
-

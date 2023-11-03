@@ -1,5 +1,5 @@
 /**
- * Copyright 2022 Google LLC
+ * Copyright 2023 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,26 +14,7 @@
  * limitations under the License.
  */
 
-# tfdoc:file:description Project factory.
-
-module "projects" {
-  source = "../../../../blueprints/factories/project-factory"
-  data_defaults = {
-    billing_account = var.billing_account.id
-    # more defaults are available, check the project factory variables
-  }
-  data_merges = {
-    labels = {
-      environment = "dev"
-    }
-    services = [
-      "stackdriver.googleapis.com"
-    ]
-  }
-  data_overrides = {
-    prefix = "${var.prefix}-dev"
-  }
-  factory_data_path = var.factory_data_path
+variable "envoy_image" {
+  description = "Image."
+  type        = string
 }
-
-
